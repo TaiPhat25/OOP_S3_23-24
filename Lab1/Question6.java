@@ -36,11 +36,16 @@ public class Question6 {
         System.out.println(str + k);
     }
 
-    public String ReverseString(String n) {
+    public boolean ReverseString(String n) {
         String c = "";
         for (int i = n.length()-1; i >= 0; i--) {
             c = c + n.charAt(i);
         }
-        return c;
+        if(c.equals(str)) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
