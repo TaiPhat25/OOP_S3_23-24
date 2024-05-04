@@ -5,6 +5,7 @@
 package com.mycompany.lab2;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
 
 /**
@@ -57,5 +58,27 @@ public class Bank {
         if (acc1 != null && acc2 != null) {
             acc1.transferMoney(acc2, money);
         }
+    }
+
+    Comparator<BankAccount> com = new Comparator<BankAccount>() {
+        @Override
+        public int compare(BankAccount o1, BankAccount o2) {
+            return (int) (o1.getBalance() - o2.getBalance());
+        }
+    };
+
+    Comparator<BankAccount> comName = new Comparator<BankAccount>() {
+        @Override
+        public int compare(BankAccount o1, BankAccount o2) {
+            return o1.getName().compareTo(o2.getName());
+        }
+    };
+
+    public void SortAccNumber() {
+        listBK.sort(com);
+    }
+
+    public void SortAccNumberByName() {
+        listBK.sort(comName);
     }
 }
