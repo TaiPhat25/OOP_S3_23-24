@@ -9,11 +9,12 @@ package com.mycompany.lab3;
  * @author Student
  */
 public class PartTimeEmployee extends Employee {
+
     public int workingHour;
     public float payRate;
-    
+
     public PartTimeEmployee() {
-        
+
     }
 
     public PartTimeEmployee(int workingHour, float payRate) {
@@ -52,9 +53,18 @@ public class PartTimeEmployee extends Employee {
     public float getPayment() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
     public void PTEInput() {
+        super.Input();
+        System.out.print("Working Hours: ");
         workingHour = obj.nextInt();
-        payRate = obj.nextFloat()
+        System.out.print("Pay Rate: ");
+        payRate = obj.nextFloat();
+    }
+
+    public void PTEOutput() {
+        super.Output();
+        System.out.println("Working Hours: " + workingHour);
+        System.out.println("Pay Rate: " + payRate);
     }
 }

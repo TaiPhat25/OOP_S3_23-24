@@ -4,8 +4,6 @@
  */
 package com.mycompany.lab3;
 
-
-
 /**
  *
  * @author Student
@@ -44,8 +42,15 @@ public class FullTimeEmployee extends Employee {
     public float getPayment() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
     public void FTEInput() {
+        super.Input();
+        System.out.println("Salary: ");
         salary = obj.nextFloat();
+    }
+
+    public void FTEOutput() {
+        super.Output();
+        System.out.println("Salary" + salary);
     }
 }
