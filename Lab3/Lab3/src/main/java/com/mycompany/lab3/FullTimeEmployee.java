@@ -20,7 +20,8 @@ public class FullTimeEmployee extends Employee {
         this.salary = salary;
     }
 
-    public FullTimeEmployee(float salary, String employeeID, String employeeName, int yearOfBirth, String address, String phone) {
+    public FullTimeEmployee(float salary, String employeeID, String employeeName, int yearOfBirth, String address,
+            String phone) {
         super(employeeID, employeeName, yearOfBirth, address, phone);
         this.salary = salary;
     }
@@ -35,22 +36,32 @@ public class FullTimeEmployee extends Employee {
 
     @Override
     public String getInfor() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public float getPayment() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     public void FTEInput() {
         super.Input();
-        System.out.println("Salary: ");
+        System.out.print("Salary: ");
         salary = obj.nextFloat();
+        obj.nextLine();
     }
 
     public void FTEOutput() {
         super.Output();
-        System.out.println("Salary" + salary);
+        System.out.println("Salary: " + salary);
+    }
+
+    public void EditFTE() {
+        super.EditEmployeeInformation();
+        System.out.print("Salary: ");
+        salary = obj.nextFloat();
+        obj.nextLine();
     }
 }

@@ -22,7 +22,8 @@ public class PartTimeEmployee extends Employee {
         this.payRate = payRate;
     }
 
-    public PartTimeEmployee(int workingHour, float payRate, String employeeID, String employeeName, int yearOfBirth, String address, String phone) {
+    public PartTimeEmployee(int workingHour, float payRate, String employeeID, String employeeName, int yearOfBirth,
+            String address, String phone) {
         super(employeeID, employeeName, yearOfBirth, address, phone);
         this.workingHour = workingHour;
         this.payRate = payRate;
@@ -46,25 +47,39 @@ public class PartTimeEmployee extends Employee {
 
     @Override
     public String getInfor() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public float getPayment() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     public void PTEInput() {
         super.Input();
         System.out.print("Working Hours: ");
         workingHour = obj.nextInt();
+        obj.nextLine();
         System.out.print("Pay Rate: ");
         payRate = obj.nextFloat();
+        obj.nextLine();
     }
 
     public void PTEOutput() {
         super.Output();
         System.out.println("Working Hours: " + workingHour);
         System.out.println("Pay Rate: " + payRate);
+    }
+
+    public void EditPTE() {
+        super.EditEmployeeInformation();
+        System.out.print("Working Hours: ");
+        workingHour = obj.nextInt();
+        obj.nextLine();
+        System.out.print("Pay Rate: ");
+        payRate = obj.nextFloat();
+        obj.nextLine();
     }
 }

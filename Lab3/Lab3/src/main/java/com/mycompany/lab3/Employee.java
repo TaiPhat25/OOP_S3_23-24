@@ -77,16 +77,16 @@ public abstract class Employee {
     }
 
     public void Input() {
-        System.out.println("Employee ID: ");
+        System.out.print("Employee ID: ");
         employeeID = obj.nextLine();
-        System.out.println("Employee Name: ");
+        System.out.print("Employee Name: ");
         employeeName = obj.nextLine();
-        System.out.println("Year Of Birth: ");
+        System.out.print("Year Of Birth: ");
         yearOfBirth = obj.nextInt();
         obj.nextLine();
-        System.out.println("Address: ");
+        System.out.print("Address: ");
         address = obj.nextLine();
-        System.out.println("Phone: ");
+        System.out.print("Phone: ");
         phone = obj.nextLine();
     }
 
@@ -98,4 +98,15 @@ public abstract class Employee {
         System.out.println("Phone: " + phone);
     }
 
+    public void EditEmployeeInformation() {
+        System.out.print("Employee Name: ");
+        employeeName = obj.nextLine();
+        System.out.print("Year Of Birth: ");
+        yearOfBirth = obj.nextInt();
+        obj.nextLine();
+        System.out.print("Address: ");
+        address = obj.nextLine();
+        System.out.print("Phone: ");
+        phone = obj.nextLine();
+    }
 }

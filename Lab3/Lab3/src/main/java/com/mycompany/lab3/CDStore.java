@@ -77,7 +77,14 @@ public class CDStore {
     }
 
     public void EditCD() {
+        System.out.println("Edit CD: ");
+        var ID = obj.nextLong();
 
+        for (int i = 0; i < listCD.size(); i++) {
+            if (listCD.get(i).getCdID() == ID) {
+                listCD.get(i).EditCDInformation();
+            }
+        }
     }
 
     public void DisplayAllCD() {

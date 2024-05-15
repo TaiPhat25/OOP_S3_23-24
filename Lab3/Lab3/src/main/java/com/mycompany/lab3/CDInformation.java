@@ -105,6 +105,16 @@ public class CDInformation {
         System.out.println("CD Year Of Release: " + cdYearOfRelease);
     }
 
-    
-
+    public void EditCDInformation() {
+        System.out.print("CD Collection: ");
+        cdCollection = obj.next();
+        System.out.print("CD Type: ");
+        cdType = obj.next();
+        System.out.print("CD Title: ");
+        cdTitle = obj.next();
+        System.out.print("CD Price: ");
+        cdPrice = obj.nextInt();
+        System.out.print("CD Year Of Release: ");
+        cdYearOfRelease = obj.nextInt();
+    }
 }
