@@ -9,5 +9,6 @@ package com.mycompany.lab4;
  * @author Student
  */
 public interface Bank {
+
     public String getBankName();
 }

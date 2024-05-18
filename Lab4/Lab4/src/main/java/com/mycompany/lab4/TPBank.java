@@ -8,8 +8,8 @@ package com.mycompany.lab4;
  *
  * @author Student
  */
-public class TPBank implements Bank
-{
+public class TPBank implements Bank {
+
     @Override
     public String getBankName() {
         return "TPBank";

@@ -69,21 +69,27 @@ public class Main {
 //            System.out.println("Not Found");
 //        }
 
-        BankFactory bf1 = new BankFactory();
-        var type = obj.nextInt();
-        Bank bank;
+//        Question 2
+//        BankFactory bf1 = new BankFactory();
+//        var type = obj.nextInt();
+//        Bank bank;
+//
+//        switch (type) {
+//            case 1 -> {
+//                bank = bf1.getBank(BankType.TPBank);
+//                System.out.println(bank.getBankName());
+//            }
+//            case 2 -> {
+//                bank = bf1.getBank(BankType.VietcomBank);
+//                System.out.println(bank.getBankName());
+//            }
+//            default ->
+//                System.out.println("Not Found");
+//        }
 
-        switch (type) {
-            case 1 -> {
-                bank = bf1.getBank(BankType.TPBank);
-                System.out.println(bank.getBankName());
-            }
-            case 2 -> {
-                bank = bf1.getBank(BankType.VietcomBank);
-                System.out.println(bank.getBankName());
-            }
-            default ->
-                System.out.println("Not Found");
-        }
+          School s1 = new School();
+          s1.AddCollege();
+          s1.AddUniversity();
+          s1.Print();
     }
 }
