@@ -62,6 +62,8 @@ public abstract class Student {
         this.avgScore = avgScore;
     }
 
+    public abstract boolean Graduation();
+
     public void Input() {
         System.out.print("Student Number: ");
         studentNumber = obj.nextLine();

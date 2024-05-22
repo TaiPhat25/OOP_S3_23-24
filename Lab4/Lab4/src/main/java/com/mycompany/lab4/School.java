@@ -15,7 +15,7 @@ public class School {
 
     static Scanner obj = new Scanner(System.in);
 
-    Vector<Student> listStudent = new Vector<>();
+    Vector<Student> listStudents = new Vector<>();
 
     public void AddCollege() {
         System.out.print("How Many College Students Do You Want To Add: ");
@@ -23,8 +23,8 @@ public class School {
 
         for (int i = 0; i < n; i++) {
             CollegeStudent cs1 = new CollegeStudent();
-            cs1.CollegeInput();
-            listStudent.add(cs1);
+            cs1.Input();
+            listStudents.add(cs1);
         }
     }
 
@@ -34,26 +34,58 @@ public class School {
 
         for (int i = 0; i < n; i++) {
             UniversityStudent us1 = new UniversityStudent();
-            us1.UniversityInput();
-            listStudent.add(us1);
+            us1.Input();
+            listStudents.add(us1);
         }
     }
 
     public void RemoveStudent() {
         System.out.print("Enter Student Code: ");
-        var code = obj.nextLine();
+        var code = obj.next();
 
-        for (int i = 0; i < listStudent.size(); i++) {
-            if (listStudent.get(i).getStudentNumber().equals(code)) {
-                listStudent.remove(i);
+        for (int i = 0; i < listStudents.size(); i++) {
+            if (listStudents.get(i).getStudentNumber().equals(code)) {
+                listStudents.remove(i);
             }
         }
     }
-    
+
     public void Print() {
-        for(int i = 0; i<listStudent.size(); i++) {
-            listStudent.get(i).Output();
+        System.out.println("All Students-----------------");
+        for (int i = 0; i < listStudents.size(); i++) {
+            listStudents.get(i).Output();
         }
     }
 
+    public void GraduationStudent() {
+        int count = 0;
+
+        for (int i = 0; i < listStudents.size(); i++) {
+            if (listStudents.get(i).Graduation()) {
+                listStudents.get(i).Output();
+                count++;
+            }
+        }
+        System.out.println("Total Of " + count + " Students Can Graduate");
+    }
+
+    public void Sort() {
+        listStudents.sort((s1, s2) -> {
+            if (s1.getClass().toString().compareTo(s2.getClass().toString()) == 0) {
+                return s1.getStudentNumber().compareTo(s2.getStudentNumber());
+            }
+            return s1.getClass().toString().compareTo(s2.getClass().toString());
+        });
+    }
+
+    public void FindStudent() {
+        System.out.print("Name You Want To Find: ");
+        String name = obj.next();
+
+        for (int i = 0; i < listStudents.size(); i++) {
+            if (listStudents.get(i).getStudentFullName().equals(name)) {
+                listStudents.get(i).Output();
+            }
+        }
+    }
 }

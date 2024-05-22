@@ -3,8 +3,6 @@
  */
 package com.mycompany.lab4;
 
-import java.util.HashMap;
-import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -86,10 +84,13 @@ public class Main {
 //            default ->
 //                System.out.println("Not Found");
 //        }
-
-          School s1 = new School();
-          s1.AddCollege();
-          s1.AddUniversity();
-          s1.Print();
+        School s1 = new School();
+        s1.AddCollege();
+        s1.AddUniversity();
+        // s1.RemoveStudent();
+        // s1.GraduationStudent();
+        // s1.Sort();
+        // s1.Print();
+        s1.FindStudent();
     }
 }

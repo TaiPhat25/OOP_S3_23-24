@@ -20,7 +20,8 @@ public class CollegeStudent extends Student {
         this.examScore = examScore;
     }
 
-    public CollegeStudent(double examScore, String studentNumber, String studentFullName, int credits, double avgScore) {
+    public CollegeStudent(double examScore, String studentNumber, String studentFullName, int credits,
+            double avgScore) {
         super(studentNumber, studentFullName, credits, avgScore);
         this.examScore = examScore;
     }
@@ -33,18 +34,21 @@ public class CollegeStudent extends Student {
         this.examScore = examScore;
     }
 
+    @Override
     public boolean Graduation() {
         return this.getCredits() >= 100 && this.getAvgScore() >= 5 && this.getExamScore() >= 5;
     }
 
-    public void CollegeInput() {
+    @Override
+    public void Input() {
         super.Input();
         System.out.print("Exam Score: ");
         examScore = obj.nextDouble();
         obj.nextLine();
     }
 
-    public void CollegeOutput() {
+    @Override
+    public void Output() {
         super.Output();
         System.out.println("Exam Score: " + examScore);
     }

@@ -22,7 +22,8 @@ public class UniversityStudent extends Student {
         this.thesisScore = thesisScore;
     }
 
-    public UniversityStudent(String thesisName, double thesisScore, String studentNumber, String studentFullName, int credits, double avgScore) {
+    public UniversityStudent(String thesisName, double thesisScore, String studentNumber, String studentFullName,
+            int credits, double avgScore) {
         super(studentNumber, studentFullName, credits, avgScore);
         this.thesisName = thesisName;
         this.thesisScore = thesisScore;
@@ -44,11 +45,13 @@ public class UniversityStudent extends Student {
         this.thesisScore = thesisScore;
     }
 
+    @Override
     public boolean Graduation() {
         return this.getCredits() >= 150 && this.getAvgScore() >= 5 && this.getThesisScore() >= 5;
     }
 
-    public void UniversityInput() {
+    @Override
+    public void Input() {
         super.Input();
         System.out.print("Thesis Name: ");
         thesisName = obj.nextLine();
@@ -57,9 +60,10 @@ public class UniversityStudent extends Student {
         obj.nextLine();
     }
 
-    public void UniversityOutput() {
+    @Override
+    public void Output() {
         super.Output();
-        System.out.print("Thesis Name: " + thesisName);
-        System.out.print("Thesis Score: " + thesisScore);
+        System.out.println("Thesis Name: " + thesisName);
+        System.out.println("Thesis Score: " + thesisScore);
     }
 }
