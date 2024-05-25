@@ -10,6 +10,7 @@ import java.util.Scanner;
  * @author Student
  */
 public class Main {
+
     static Scanner obj = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -34,9 +35,9 @@ public class Main {
                     break;
                 }
                 case 2 -> {
-                   s1.AddUniversity();
-                   s1.WriteFile();
-                   break;
+                    s1.AddUniversity();
+                    s1.WriteFile();
+                    break;
                 }
                 case 3 -> {
                     s1.RemoveStudent();
@@ -64,6 +65,6 @@ public class Main {
                     System.out.println("Finished");
                 }
             }
-        } while (x!=8);
+        } while (x != 8);
     }
 }
