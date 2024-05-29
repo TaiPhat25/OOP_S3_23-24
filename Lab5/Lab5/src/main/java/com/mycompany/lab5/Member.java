@@ -17,13 +17,13 @@ public abstract class Member implements Serializable {
 
     private String fullName;
     private String dateOfBirth;
-    private long ID;
+    private String ID;
 
     public Member() {
 
     }
 
-    public Member(String fullName, String dateOfBirth, long ID) {
+    public Member(String fullName, String dateOfBirth, String ID) {
         this.fullName = fullName;
         this.dateOfBirth = dateOfBirth;
         this.ID = ID;
@@ -37,7 +37,7 @@ public abstract class Member implements Serializable {
         return dateOfBirth;
     }
 
-    public long getID() {
+    public String getID() {
         return ID;
     }
 
@@ -49,7 +49,7 @@ public abstract class Member implements Serializable {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public void setID(long ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 
@@ -57,7 +57,7 @@ public abstract class Member implements Serializable {
 
     public void Input() {
         System.out.println("Full Name: ");
-        fullName = obj.nextLine();
+        fullName = obj.next();
 
         System.out.println("Date Of Birth");
         System.out.print("Day: ");
@@ -69,25 +69,24 @@ public abstract class Member implements Serializable {
         System.out.print("Year: ");
         int Y = obj.nextInt();
         obj.nextLine();
-        //*****
+        // *****
         String Day;
         if (D < 10) {
             Day = "0" + D;
         } else {
             Day = Integer.toString(D);
         }
-        //*****
+        // *****
         String Month;
         if (M < 10) {
             Month = "0" + M;
         } else {
-            Month = Integer.toString(D);
+            Month = Integer.toString(M);
         }
         dateOfBirth = Day + "/" + Month + "/" + Y;
 
         System.out.println("ID Number: ");
-        ID = obj.nextLong();
-        obj.nextLine();
+        ID = obj.nextLine();
     }
 
     public void Output() {

@@ -79,7 +79,8 @@ public class Main {
             System.out.println("4. Calculate Total Salary Of All Staff");
             System.out.println("5. Statistic Total Salary Of Staff By Type Of Staff");
             System.out.println("6. Print The 3 Highest Paid Staff");
-            System.out.println("7. Exit");
+            System.out.println("7. Print All Staff Information");
+            System.out.println("8. Exit");
             x = obj.nextInt();
             switch (x) {
                 case 1 -> {
@@ -117,12 +118,41 @@ public class Main {
                                 System.out.println("Exiting.....");
                             }
                         }
-                    } while (x != 5);
+                    } while (k != 5);
                 }
                 case 2 -> {
-
+                    st1.editInformationbyID();
+                    st1.writeFile();
+                    break;
+                }
+                case 3 -> {
+                    st1.removeStaffbyID();
+                    st1.writeFile();
+                    break;
+                }
+                case 4 -> {
+                    st1.totalSalary();
+                    st1.writeFileQ4();
+                    break;
+                }
+                case 5 -> {
+                    st1.totalSalarybyStaff();
+                    st1.writeFileQ5();
+                    break;
+                }
+                case 6 -> {
+                    st1.highestPaidStaff();
+                    st1.writeFileQ6();
+                    break;
+                }
+                case 7 -> {
+                    st1.printStaffInformation();
+                    break;
+                }
+                case 8 -> {
+                    System.out.println("Finished");
                 }
             }
-        } while (x != 7);
+        } while (x != 8);
     }
 }

@@ -25,7 +25,7 @@ public class Researcher extends Member {
         this.yearsOfResXP = yearsOfResXP;
     }
 
-    public Researcher(int numberOfResCodes, int yearsOfResXP, String fullName, String dateOfBirth, long ID) {
+    public Researcher(int numberOfResCodes, int yearsOfResXP, String fullName, String dateOfBirth, String ID) {
         super(fullName, dateOfBirth, ID);
         this.numberOfResCodes = numberOfResCodes;
         this.yearsOfResXP = yearsOfResXP;
@@ -63,8 +63,9 @@ public class Researcher extends Member {
         obj.nextLine();
         for (int i = 0; i < numberOfResCodes; i++) {
             try {
+                System.out.print("Enter Subject Code: ");
                 String code = obj.nextLine();
-                if (code.matches("[A-Za-z][0-9]{2}.*")) {
+                if (code.matches("[A-Za-z][0-9]{2}")) {
                     System.out.println(code + " Is A Valid Code");
                     listOfResCodes.add(code);
                 } else {

@@ -25,7 +25,7 @@ public class Specialist extends Member {
         this.yearsOfWorkXP = yearsOfWorkXP;
     }
 
-    public Specialist(int numberOfEduCodes, int yearsOfWorkXP, String fullName, String dateOfBirth, long ID) {
+    public Specialist(int numberOfEduCodes, int yearsOfWorkXP, String fullName, String dateOfBirth, String ID) {
         super(fullName, dateOfBirth, ID);
         this.numberOfEduCodes = numberOfEduCodes;
         this.yearsOfWorkXP = yearsOfWorkXP;
@@ -63,8 +63,9 @@ public class Specialist extends Member {
         obj.nextLine();
         for (int i = 0; i < numberOfEduCodes; i++) {
             try {
+                System.out.print("Enter Subject Code: ");
                 String code = obj.nextLine();
-                if (code.matches("[A-Za-z][0-9]{2}.*")) {
+                if (code.matches("[A-Za-z][0-9]{2}")) {
                     System.out.println(code + " Is A Valid Code");
                     listOfEduCodes.add(code);
                 } else {

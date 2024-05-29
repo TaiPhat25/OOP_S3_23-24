@@ -29,7 +29,8 @@ public class Lecture extends Member {
         this.numberOfSubjectsBeingTaught = numberOfSubjectsBeingTaught;
     }
 
-    public Lecture(String academicRank, String academicDegree, int yearsOfTeachingXP, int numberOfSubjectsBeingTaught, String fullName, String dateOfBirth, long ID) {
+    public Lecture(String academicRank, String academicDegree, int yearsOfTeachingXP, int numberOfSubjectsBeingTaught,
+            String fullName, String dateOfBirth, String ID) {
         super(fullName, dateOfBirth, ID);
         this.academicRank = academicRank;
         this.academicDegree = academicDegree;
@@ -53,6 +54,10 @@ public class Lecture extends Member {
         return numberOfSubjectsBeingTaught;
     }
 
+    public ArrayList<String> getListSubjects() {
+        return listSubjects;
+    }
+
     public void setAcademicRank(String academicRank) {
         this.academicRank = academicRank;
     }
@@ -67,6 +72,10 @@ public class Lecture extends Member {
 
     public void setNumberOfSubjectsBeingTaught(int numberOfSubjectsBeingTaught) {
         this.numberOfSubjectsBeingTaught = numberOfSubjectsBeingTaught;
+    }
+
+    public void setListSubjects(ArrayList<String> listSubjects) {
+        this.listSubjects = listSubjects;
     }
 
     @Override
@@ -85,7 +94,8 @@ public class Lecture extends Member {
         System.out.println("Number Of Subjects Being Taught: ");
         numberOfSubjectsBeingTaught = obj.nextInt();
         for (int i = 0; i < numberOfSubjectsBeingTaught; i++) {
-            String subject = obj.nextLine();
+            System.out.print("Enter Subject: ");
+            String subject = obj.next();
             listSubjects.add(subject);
         }
     }

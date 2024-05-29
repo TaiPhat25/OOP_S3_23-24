@@ -20,7 +20,7 @@ public class TeachingAssistant extends Member {
         this.numberOfSubjectsAssisted = numberOfSubjectsAssisted;
     }
 
-    public TeachingAssistant(int numberOfSubjectsAssisted, String fullName, String dateOfBirth, long ID) {
+    public TeachingAssistant(int numberOfSubjectsAssisted, String fullName, String dateOfBirth, String ID) {
         super(fullName, dateOfBirth, ID);
         this.numberOfSubjectsAssisted = numberOfSubjectsAssisted;
     }

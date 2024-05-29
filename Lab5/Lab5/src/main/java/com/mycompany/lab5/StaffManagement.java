@@ -66,9 +66,133 @@ public class StaffManagement {
         }
     }
 
+    public void editInformationbyID() {
+        System.out.println("Enter The ID: ");
+        String id = obj.nextLine();
+
+        for (int i = 0; i < listStaff.size(); i++) {
+            if (listStaff.get(i).getID().equals(id)) {
+                System.out.println("Enter New Name: ");
+                String name = obj.next();
+
+                System.out.println("Enter New Date Of Birth");
+                System.out.print("Day: ");
+                int d = obj.nextInt();
+                System.out.print("Month: ");
+                int m = obj.nextInt();
+                System.out.print("Year: ");
+                int y = obj.nextInt();
+                String day;
+                if (d < 10) {
+                    day = "0" + d;
+                } else {
+                    day = Integer.toString(d);
+                }
+                String month;
+                if (m < 10) {
+                    month = "0" + m;
+                } else {
+                    month = Integer.toString(m);
+                }
+                String DoB = day + "/" + month + "/" + y;
+
+                System.out.println("Enter New ID: ");
+                String newID = obj.nextLine();
+
+                listStaff.get(i).setFullName(name);
+                listStaff.get(i).setDateOfBirth(DoB);
+                listStaff.get(i).setID(newID);
+                break;
+            }
+        }
+    }
+
+    public void removeStaffbyID() {
+        System.out.println("Enter The ID: ");
+        String id = obj.nextLine();
+
+        for (int i = 0; i < listStaff.size(); i++) {
+            if (listStaff.get(i).getID().equals(id)) {
+                listStaff.remove(i);
+                break;
+            }
+        }
+    }
+
+    public void totalSalary() {
+        double salary = 0;
+        for (int i = 0; i < listStaff.size(); i++) {
+            salary += listStaff.get(i).Salary();
+        }
+        System.out.println(salary);
+    }
+
+    public void totalSalarybyStaff() {
+        listStaff.sort((s1, s2) -> {
+            if (s1.getClass().toString().compareTo(s2.getClass().toString()) == 0) {
+                return s1.getID().compareTo(s2.getID());
+            }
+            return s1.getClass().toString().compareTo(s2.getClass().toString());
+        });
+    }
+
+    public void highestPaidStaff() {
+        listStaff.sort((s1, s2) -> {
+            return Double.compare(s2.Salary(), s1.Salary());
+        });
+        for (int i = 0; i < 3; i++) {
+            listStaff.get(i).Output();
+        }
+    }
+
+    public void printStaffInformation() {
+        for (int i = 0; i < listStaff.size(); i++) {
+            listStaff.get(i).Output();
+        }
+    }
+
     public void writeFile() {
         try {
             FileOutputStream f = new FileOutputStream("EIUStaff.eiu");
+            try (ObjectOutputStream oStream = new ObjectOutputStream(f)) {
+                for (Member m : listStaff) {
+                    oStream.writeObject(m);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error Write File");
+        }
+    }
+
+    public void writeFileQ4() {
+        try {
+            FileOutputStream f = new FileOutputStream("TotalSalary.eiu");
+            try (ObjectOutputStream oStream = new ObjectOutputStream(f)) {
+                for (Member m : listStaff) {
+                    oStream.writeObject(m);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error Write File");
+        }
+    }
+
+    public void writeFileQ5() {
+        try {
+            FileOutputStream f = new FileOutputStream("TotalSalarybyType.eiu");
+            try (ObjectOutputStream oStream = new ObjectOutputStream(f)) {
+                for (Member m : listStaff) {
+                    oStream.writeObject(m);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error Write File");
+        }
+    }
+
+    public void writeFileQ6() {
+        try {
+            FileOutputStream f = new FileOutputStream("HighestPaidStaff.eiu");
             try (ObjectOutputStream oStream = new ObjectOutputStream(f)) {
                 for (Member m : listStaff) {
                     oStream.writeObject(m);
