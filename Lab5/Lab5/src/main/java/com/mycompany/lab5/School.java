@@ -94,10 +94,11 @@ public class School {
         }
     }
 
-    //Dung de ghi vao file
+    // Dung de ghi vao file
     public void WriteFile() {
         try {
-            FileOutputStream f = new FileOutputStream("C:\\Users\\admin\\Desktop\\CSE 203\\OOP_S3_23-24\\Lab5\\Lab5\\Student.dat");
+            FileOutputStream f = new FileOutputStream(
+                    "D:\\Java\\CSE 203 (OOP)\\OOP_S3_23-24\\Lab5\\Lab5\\Students.dat");
             try (ObjectOutputStream oStream = new ObjectOutputStream(f)) {
                 for (Student s : listStudents) {
                     oStream.writeObject(s);
@@ -108,10 +109,40 @@ public class School {
         }
     }
 
-    //Dung de load du lieu len tu file
+    // Dung de load du lieu len tu file
     public void ReadFile() {
         try {
-            FileInputStream f = new FileInputStream("C:\\Users\\admin\\Desktop\\CSE 203\\OOP_S3_23-24\\Lab5\\Lab5\\Student.dat");
+            FileInputStream f = new FileInputStream("D:\\Java\\CSE 203 (OOP)\\OOP_S3_23-24\\Lab5\\Lab5\\Students.dat");
+            try (ObjectInputStream iStream = new ObjectInputStream(f)) {
+                Student st = null;
+                while ((st = (Student) iStream.readObject()) != null) {
+                    listStudents.add(st);
+                }
+            }
+        } catch (ClassNotFoundException e) {
+            System.out.println("Class Not Found");
+        } catch (IOException e) {
+            System.out.println("Error Read File");
+        }
+    }
+
+    public void WriteFile1() {
+        try {
+            FileOutputStream f = new FileOutputStream(
+                    "D:\\Java\\CSE 203 (OOP)\\OOP_S3_23-24\\Lab5\\Lab5\\Result.dat");
+            try (ObjectOutputStream oStream = new ObjectOutputStream(f)) {
+                for (Student s : listStudents) {
+                    oStream.writeObject(s);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error Write File");
+        }
+    }
+
+    public void ReadFile1() {
+        try {
+            FileInputStream f = new FileInputStream("D:\\Java\\CSE 203 (OOP)\\OOP_S3_23-24\\Lab5\\Lab5\\Result.dat");
             try (ObjectInputStream iStream = new ObjectInputStream(f)) {
                 Student st = null;
                 while ((st = (Student) iStream.readObject()) != null) {

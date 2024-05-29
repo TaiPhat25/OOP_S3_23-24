@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author Student
  */
-public abstract class Student implements Serializable{
+public abstract class Student implements Serializable {
 
     static Scanner obj = new Scanner(System.in);
 
