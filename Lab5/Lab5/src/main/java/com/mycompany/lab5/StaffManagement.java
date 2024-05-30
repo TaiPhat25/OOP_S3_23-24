@@ -9,8 +9,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Vector;
 
 /**
  *
@@ -20,7 +20,7 @@ public class StaffManagement {
 
     static Scanner obj = new Scanner(System.in);
 
-    ArrayList<Member> listStaff = new ArrayList<>();
+    Vector<Member> listStaff = new Vector<>();
 
     public void addLecture() {
         System.out.println("How Many Lectures Do You Want To Add: ");
