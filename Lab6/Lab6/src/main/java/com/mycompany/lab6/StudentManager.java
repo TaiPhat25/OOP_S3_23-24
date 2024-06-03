@@ -4,6 +4,12 @@
  */
 package com.mycompany.lab6;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 /**
@@ -47,5 +53,34 @@ public class StudentManager {
 
     public StudentTableModel getStudentTableModel() {
         return stm;
+    }
+
+    public void writeFile() {
+        try {
+            FileOutputStream f = new FileOutputStream("Student.dat");
+            try (ObjectOutputStream oStream = new ObjectOutputStream(f)) {
+                for (Student s : listStudent) {
+                    oStream.writeObject(s);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error Write File");
+        }
+    }
+
+    public void readFile() {
+        try {
+            FileInputStream f = new FileInputStream("Student.dat");
+            try (ObjectInputStream iStream = new ObjectInputStream(f)) {
+                Student s = null;
+                while ((s = (Student) iStream.readObject()) != null) {
+                    listStudent.add(s);
+                }
+            }
+        } catch (ClassNotFoundException e) {
+            System.out.println("Class Not Found");
+        } catch (IOException e) {
+            System.out.println("Error Read File");
+        }
     }
 }
