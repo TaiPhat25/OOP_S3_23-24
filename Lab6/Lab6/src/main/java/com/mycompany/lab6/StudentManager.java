@@ -51,6 +51,21 @@ public class StudentManager {
         return true;
     }
 
+    public void removeStudent(String ID) {
+        for (int i = 0; i < listStudent.size(); i++) {
+            if (listStudent.get(i).getStudentID().equals(ID)) {
+                listStudent.remove(i);
+                break;
+            }
+        }
+    }
+
+    public void Print() {
+        for (int i = 0; i < listStudent.size(); i++) {
+            listStudent.get(i).Output();
+        }
+    }
+
     public StudentTableModel getStudentTableModel() {
         return stm;
     }

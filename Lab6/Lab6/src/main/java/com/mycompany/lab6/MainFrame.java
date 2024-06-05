@@ -13,7 +13,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -26,8 +25,9 @@ public class MainFrame extends JFrame {
     private StudentManager stuManager = new StudentManager();
     private JButton btnRefresh;
     private JTable table;
-    private DefaultTableModel model;
+    private StudentTableModel model = new StudentTableModel();
     private JButton btnDelete;
+    private JButton btnSaveToFile;
 
     public MainFrame() throws HeadlessException {
     }
@@ -61,25 +61,31 @@ public class MainFrame extends JFrame {
         });
         btnDelete = new JButton("Delete");
         btnDelete.addActionListener((e) -> {
-            
+            int selectedRow = table.getSelectedRow();
+            if (selectedRow != -1) {
+                int askDeleteRow = JOptionPane.showConfirmDialog(null, "Are You Sure You Want To Remove This Row?", "CONFIRM?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (askDeleteRow == JOptionPane.YES_OPTION) {
+                    stuManager.removeStudent((String) table.getValueAt(selectedRow, 0));
+                    refreshTable();
+                }
+            }
         });
+        btnSaveToFile = new JButton("Save");
+        btnSaveToFile.addActionListener((e) -> {
+            stuManager.writeFile();
+        });
+
         this.setLayout(new BorderLayout());
         JPanel pannel = new JPanel();
         pannel.setLayout(new FlowLayout());
         pannel.add(btnCheckTotalStudents);
         pannel.add(btnNewStudent);
         pannel.add(btnRefresh);
+        pannel.add(btnDelete);
+        pannel.add(btnSaveToFile);
         this.add(pannel, BorderLayout.NORTH);
 
-        model = new DefaultTableModel();
         table = new JTable(model);
-
-        model.addColumn("Student ID");
-        model.addColumn("First Name");
-        model.addColumn("Middle Name");
-        model.addColumn("Last Name");
-        model.addColumn("Gender");
-        model.addColumn("School Stage");
 
         JScrollPane scrollPane = new JScrollPane(table);
 
