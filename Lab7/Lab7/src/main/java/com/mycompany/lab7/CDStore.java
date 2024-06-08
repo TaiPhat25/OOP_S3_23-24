@@ -33,7 +33,7 @@ public class CDStore extends javax.swing.JFrame {
         refresh = new javax.swing.JButton();
         delete = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
@@ -79,6 +79,11 @@ public class CDStore extends javax.swing.JFrame {
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
+        refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshActionPerformed(evt);
+            }
+        });
         jPanel1.add(refresh);
 
         delete.setText("Delete");
@@ -92,7 +97,7 @@ public class CDStore extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -104,7 +109,7 @@ public class CDStore extends javax.swing.JFrame {
                 "Title", "Collection", "Type", "Price"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(table);
 
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -135,7 +140,7 @@ public class CDStore extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void newCDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newCDActionPerformed
-        NewCDDialog dlg = new NewCDDialog();
+        NewCDDialog dlg = new NewCDDialog(cdManager);
         dlg.setVisible(true);
     }//GEN-LAST:event_newCDActionPerformed
 
@@ -148,7 +153,7 @@ public class CDStore extends javax.swing.JFrame {
     }//GEN-LAST:event_restoreActionPerformed
 
     private void refreshAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_refreshAncestorAdded
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_refreshAncestorAdded
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
@@ -162,6 +167,29 @@ public class CDStore extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
+        refreshTable();
+    }//GEN-LAST:event_refreshActionPerformed
+
+    private void fillInCDTable() {
+        for (CDInformation cd : cdManager.getListCD()) {
+            String[] rowCDInfo = {cd.getCdTitle(), cd.getCdCollection(), cd.getCdType(), String.valueOf(cd.getCdPrice())};
+            cdModel.addRow(rowCDInfo);
+        }
+        table.setModel(cdModel);
+    }
+
+    public void clearTable() {
+        if (cdModel != null) {
+            cdModel.setRowCount(0);
+        }
+    }
+
+    public void refreshTable() {
+        clearTable();
+        fillInCDTable();
+    }
 
     /**
      * @param args the command line arguments
@@ -204,11 +232,12 @@ public class CDStore extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JButton newCD;
     private javax.swing.JButton refresh;
     private javax.swing.JButton restore;
+    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
-    private CD
+    private CDManager cdManager = new CDManager();
+    private CDTableModel cdModel = new CDTableModel();
 }

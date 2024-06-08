@@ -4,10 +4,18 @@
  */
 package com.mycompany.lab7;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Student
  */
-public class CDTableModel {
-    
+public class CDTableModel extends DefaultTableModel {
+
+    public CDTableModel() {
+        this.addColumn("Title");
+        this.addColumn("Collection");
+        this.addColumn("Type");
+        this.addColumn("Price");
+    }
 }

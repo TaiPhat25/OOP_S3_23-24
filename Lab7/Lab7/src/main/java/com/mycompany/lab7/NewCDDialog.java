@@ -15,8 +15,10 @@ public class NewCDDialog extends javax.swing.JFrame {
     /**
      * Creates new form NewCDDialog
      */
-    public NewCDDialog() {
+    private CDManager cdManager;
+    public NewCDDialog(CDManager cdManager) {
         initComponents();
+        this.cdManager = cdManager;
     }
 
     /**
@@ -52,7 +54,7 @@ public class NewCDDialog extends javax.swing.JFrame {
         btnClear = new javax.swing.JButton();
         btnShowAll = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("CD ID");
         jLabel1.setPreferredSize(new java.awt.Dimension(75, 25));
@@ -315,6 +317,5 @@ public class NewCDDialog extends javax.swing.JFrame {
     private javax.swing.JRadioButton video;
     private javax.swing.JTextField year;
     // End of variables declaration//GEN-END:variables
-    private CDManager cdManager = new CDManager();
     private CDInformation cdInfo;
 }
