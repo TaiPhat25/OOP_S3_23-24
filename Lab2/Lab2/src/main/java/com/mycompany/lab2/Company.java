@@ -38,16 +38,19 @@ public class Company {
         }
     }
 
+    public void sortSalary() {
+        listE.sort((s1, s2) -> {
+            var compare = Double.compare(s2.Salary(), s1.Salary());
+            return compare;
+        });
+    }
+
     public void HighestSalary() {
-        double max0 = listE.get(0).Salary();
-        for (int i = 1; i < listE.size(); i++) {
-            if (listE.get(i).Salary() > max0) {
-                max0 = listE.get(i).Salary();
+        double max = listE.get(0).Salary();
+        for (int i = 0; i < listE.size(); i++) {
+            if (listE.get(i).Salary() == max) {
+                System.out.println(listE.get(i).getFullName());
             }
         }
-        System.out.println(max0);
     }
-    
-    
-
 }

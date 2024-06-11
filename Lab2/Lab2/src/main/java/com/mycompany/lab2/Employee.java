@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class Employee {
 
     static Scanner obj = new Scanner(System.in);
+    
     private String code;
     private String fullName;
     private int yearsOfService;
@@ -87,13 +88,14 @@ public class Employee {
         obj.nextLine();
     }
 
+    public double Salary() {
+        return salaryCoefficient * basicSalary;
+    }
+
     public void Output() {
         System.out.println("Employee Code: " + code);
         System.out.println("Employee Full Name: " + fullName);
         System.out.println("Years Of Service: " + yearsOfService);
-    }
-
-    public double Salary() {
-        return salaryCoefficient * basicSalary;
+        System.out.println("Salary: " + Salary());
     }
 }

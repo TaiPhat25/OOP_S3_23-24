@@ -17,13 +17,9 @@ public class Main {
 //        cp1.Plus(cp2).Print();
 //           BankAccount bk1 = new BankAccount(758, "Tai", 500);
 //           BankAccount bk2 = new BankAccount(117, "John", 100);
-          Company com1 = new Company();
-          com1.Input();
-          com1.Output();
-          com1.HighestSalary();
-           
-        
-        
-        
+          Company cp1 = new Company();
+          cp1.Input();
+          cp1.sortSalary();
+          cp1.HighestSalary();
     }
 }
