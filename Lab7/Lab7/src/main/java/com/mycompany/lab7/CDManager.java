@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Student
+ * @author Tai-E758
  */
 public class CDManager {
 
@@ -41,10 +41,11 @@ public class CDManager {
         }
     }
 
-    public void searchAndDelete(CDInformation cd) {
-        for (CDInformation c : listCD) {
-            if (c.getCdID().equals(cd.getCdID())) {
-                listCD.remove(c);
+    public void deleteCD(String ID) {
+        for (int i = 0; i < listCD.size(); i++) {
+            if (listCD.get(i).getCdID().equals(ID)) {
+                listCD.remove(i);
+                break;
             }
         }
     }
@@ -64,7 +65,7 @@ public class CDManager {
 
     public void readFile() {
         try {
-            FileInputStream f = new FileInputStream("Student.dat");
+            FileInputStream f = new FileInputStream("CD.eiu");
             try (ObjectInputStream iStream = new ObjectInputStream(f)) {
                 CDInformation c = null;
                 while ((c = (CDInformation) iStream.readObject()) != null) {

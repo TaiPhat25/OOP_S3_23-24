@@ -8,17 +8,22 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Student
+ * @author Tai-E758
  */
 public class NewCDDialog extends javax.swing.JFrame {
+
+    public CDManager managerCD = new CDManager();
 
     /**
      * Creates new form NewCDDialog
      */
-    private CDManager cdManager;
-    public NewCDDialog(CDManager cdManager) {
+    public NewCDDialog(CDManager managerCD) {
         initComponents();
-        this.cdManager = cdManager;
+        this.managerCD = managerCD;
+    }
+
+    private NewCDDialog() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -37,8 +42,7 @@ public class NewCDDialog extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         title = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         collection = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         audio = new javax.swing.JRadioButton();
@@ -56,44 +60,44 @@ public class NewCDDialog extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Windows 7 Segoe UI", 0, 12)); // NOI18N
         jLabel1.setText("CD ID");
-        jLabel1.setPreferredSize(new java.awt.Dimension(75, 25));
+        jLabel1.setPreferredSize(new java.awt.Dimension(125, 25));
         jPanel1.add(jLabel1);
 
-        id.setMinimumSize(new java.awt.Dimension(75, 25));
-        id.setPreferredSize(new java.awt.Dimension(175, 25));
-        id.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idActionPerformed(evt);
-            }
-        });
+        id.setFont(new java.awt.Font("Windows 7 Segoe UI", 0, 12)); // NOI18N
+        id.setPreferredSize(new java.awt.Dimension(250, 25));
         jPanel1.add(id);
 
+        jLabel2.setFont(new java.awt.Font("Windows 7 Segoe UI", 0, 12)); // NOI18N
         jLabel2.setText("CD Title");
-        jLabel2.setPreferredSize(new java.awt.Dimension(75, 25));
+        jLabel2.setPreferredSize(new java.awt.Dimension(125, 25));
         jPanel2.add(jLabel2);
 
-        title.setPreferredSize(new java.awt.Dimension(175, 25));
+        title.setFont(new java.awt.Font("Windows 7 Segoe UI", 0, 12)); // NOI18N
+        title.setPreferredSize(new java.awt.Dimension(250, 25));
+        title.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                titleActionPerformed(evt);
+            }
+        });
         jPanel2.add(title);
 
-        jLabel8.setText("CD Collection");
-        jLabel8.setPreferredSize(new java.awt.Dimension(100, 25));
-        jPanel3.add(jLabel8);
-        jPanel3.add(jLabel7);
+        jLabel3.setFont(new java.awt.Font("Windows 7 Segoe UI", 0, 12)); // NOI18N
+        jLabel3.setText("CD Collection");
+        jLabel3.setPreferredSize(new java.awt.Dimension(75, 25));
+        jPanel3.add(jLabel3);
 
         collection.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Game", "Movie", "Music" }));
         collection.setPreferredSize(new java.awt.Dimension(75, 25));
-        collection.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                collectionActionPerformed(evt);
-            }
-        });
         jPanel3.add(collection);
 
+        jLabel4.setFont(new java.awt.Font("Windows 7 Segoe UI", 0, 12)); // NOI18N
         jLabel4.setText("CD Type");
         jLabel4.setPreferredSize(new java.awt.Dimension(75, 25));
         jPanel3.add(jLabel4);
 
+        audio.setFont(new java.awt.Font("Windows 7 Segoe UI", 0, 12)); // NOI18N
         audio.setText("Audio");
         audio.setPreferredSize(new java.awt.Dimension(75, 25));
         audio.addActionListener(new java.awt.event.ActionListener() {
@@ -103,8 +107,8 @@ public class NewCDDialog extends javax.swing.JFrame {
         });
         jPanel3.add(audio);
 
+        video.setFont(new java.awt.Font("Windows 7 Segoe UI", 0, 12)); // NOI18N
         video.setText("Video");
-        video.setMaximumSize(new java.awt.Dimension(75, 25));
         video.setPreferredSize(new java.awt.Dimension(75, 25));
         video.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,25 +117,25 @@ public class NewCDDialog extends javax.swing.JFrame {
         });
         jPanel3.add(video);
 
+        jLabel5.setFont(new java.awt.Font("Windows 7 Segoe UI", 0, 12)); // NOI18N
         jLabel5.setText("CD Price");
-        jLabel5.setPreferredSize(new java.awt.Dimension(75, 25));
+        jLabel5.setPreferredSize(new java.awt.Dimension(125, 25));
         jPanel4.add(jLabel5);
 
-        price.setPreferredSize(new java.awt.Dimension(75, 25));
+        price.setFont(new java.awt.Font("Windows 7 Segoe UI", 0, 12)); // NOI18N
+        price.setPreferredSize(new java.awt.Dimension(250, 25));
         jPanel4.add(price);
 
+        jLabel6.setFont(new java.awt.Font("Windows 7 Segoe UI", 0, 12)); // NOI18N
         jLabel6.setText("CD Year of Release");
         jLabel6.setPreferredSize(new java.awt.Dimension(125, 25));
         jPanel5.add(jLabel6);
 
-        year.setPreferredSize(new java.awt.Dimension(75, 25));
-        year.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                yearActionPerformed(evt);
-            }
-        });
+        year.setFont(new java.awt.Font("Windows 7 Segoe UI", 0, 12)); // NOI18N
+        year.setPreferredSize(new java.awt.Dimension(250, 25));
         jPanel5.add(year);
 
+        btnAdd.setFont(new java.awt.Font("Windows 7 Segoe UI", 0, 12)); // NOI18N
         btnAdd.setText("Add");
         btnAdd.setPreferredSize(new java.awt.Dimension(75, 25));
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -141,6 +145,7 @@ public class NewCDDialog extends javax.swing.JFrame {
         });
         jPanel6.add(btnAdd);
 
+        btnClear.setFont(new java.awt.Font("Windows 7 Segoe UI", 0, 12)); // NOI18N
         btnClear.setText("Clear");
         btnClear.setPreferredSize(new java.awt.Dimension(75, 25));
         btnClear.addActionListener(new java.awt.event.ActionListener() {
@@ -150,6 +155,7 @@ public class NewCDDialog extends javax.swing.JFrame {
         });
         jPanel6.add(btnClear);
 
+        btnShowAll.setFont(new java.awt.Font("Windows 7 Segoe UI", 0, 12)); // NOI18N
         btnShowAll.setText("Show All");
         btnShowAll.setPreferredSize(new java.awt.Dimension(100, 25));
         btnShowAll.addActionListener(new java.awt.event.ActionListener() {
@@ -164,12 +170,9 @@ public class NewCDDialog extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -186,16 +189,15 @@ public class NewCDDialog extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
+    private void titleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_idActionPerformed
+    }//GEN-LAST:event_titleActionPerformed
 
     private void audioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_audioActionPerformed
         // TODO add your handling code here:
@@ -205,59 +207,36 @@ public class NewCDDialog extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_videoActionPerformed
 
-    private void yearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_yearActionPerformed
-
-    private void btnShowAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowAllActionPerformed
-        cdManager.showAllCD();
-    }//GEN-LAST:event_btnShowAllActionPerformed
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        Clear();
+    }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        if (checkInformation()) {
+        if (checkInfo()) {
             if (audio.isSelected()) {
                 CDInformation cd1 = new CDInformation(id.getText(), title.getText(), collection.getSelectedItem().toString(), "Audio", Integer.parseInt(price.getText()), Integer.parseInt(year.getText()));
-                if (cdManager.addCD(cd1) == true) {
+                if (managerCD.addCD(cd1) == true) {
                     JOptionPane.showMessageDialog(null, "CD Added Successfully", "Notification", JOptionPane.CLOSED_OPTION);
                 } else {
-                    JOptionPane.showMessageDialog(null, "This CD Is Already In The List", "Notification", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "CD Is Already In The List", "Notification", JOptionPane.ERROR_MESSAGE);
                 }
             } else if (video.isSelected()) {
                 CDInformation cd1 = new CDInformation(id.getText(), title.getText(), collection.getSelectedItem().toString(), "Video", Integer.parseInt(price.getText()), Integer.parseInt(year.getText()));
-                if (cdManager.addCD(cd1) == true) {
+                if (managerCD.addCD(cd1) == true) {
                     JOptionPane.showMessageDialog(null, "CD Added Successfully", "Notification", JOptionPane.CLOSED_OPTION);
                 } else {
-                    JOptionPane.showMessageDialog(null, "This CD Is Already In The List", "Notification", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "CD Is Already In The List", "Notification", JOptionPane.ERROR_MESSAGE);
                 }
             }
-            clearInformation();
+            Clear();
         } else {
-            JOptionPane.showMessageDialog(null, "You Need To Enter All Information", "Notification", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "You Need To Enter All Information & Only Choose Audio Or Video", "Notification", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
-    private void collectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collectionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_collectionActionPerformed
-
-    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-        clearInformation();
-    }//GEN-LAST:event_btnClearActionPerformed
-
-    private boolean checkInformation() {
-        return !(id.getText().isEmpty() || title.getText().isEmpty() || price.getText().isEmpty() || year.getText().isEmpty());
-    }
-
-    public void clearInformation() {
-        id.setText("");
-        title.setText("");
-        price.setText("");
-        year.setText("");
-    }
-
-    public CDInformation getCdInfo() {
-        return cdInfo;
-    }
+    private void btnShowAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowAllActionPerformed
+        managerCD.showAllCD();
+    }//GEN-LAST:event_btnShowAllActionPerformed
 
     /**
      * @param args the command line arguments
@@ -287,9 +266,24 @@ public class NewCDDialog extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new NewCDDialog().setVisible(true);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new NewCDDialog().setVisible(true);
+            }
         });
+    }
+
+    private boolean checkInfo() {
+        return !(id.getText().isEmpty() || title.getText().isEmpty() || price.getText().isEmpty() || year.getText().isEmpty() || (audio.isSelected() && video.isSelected()) || (!audio.isSelected() && !video.isSelected()));
+    }
+
+    private void Clear() {
+        id.setText("");
+        title.setText("");
+        audio.setSelected(false);
+        video.setSelected(false);
+        price.setText("");
+        year.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -301,11 +295,10 @@ public class NewCDDialog extends javax.swing.JFrame {
     private javax.swing.JTextField id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -317,5 +310,4 @@ public class NewCDDialog extends javax.swing.JFrame {
     private javax.swing.JRadioButton video;
     private javax.swing.JTextField year;
     // End of variables declaration//GEN-END:variables
-    private CDInformation cdInfo;
 }

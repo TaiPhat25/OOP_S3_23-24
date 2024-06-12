@@ -4,11 +4,23 @@
  */
 package com.mycompany.lab7;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  *
- * @author Student
+ * @author Tai-E758
  */
 public class CDStore extends javax.swing.JFrame {
+    
+    private CDManager managerCD = new CDManager();
+    private CDTableModel modelCD = new CDTableModel();
 
     /**
      * Creates new form CDStore
@@ -27,79 +39,73 @@ public class CDStore extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        newCD = new javax.swing.JButton();
-        backup = new javax.swing.JButton();
-        restore = new javax.swing.JButton();
-        refresh = new javax.swing.JButton();
-        delete = new javax.swing.JButton();
+        btnNewCD = new javax.swing.JButton();
+        btnBackup = new javax.swing.JButton();
+        btnRestore = new javax.swing.JButton();
+        btnRefresh = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        jButton6 = new javax.swing.JButton();
+        inputSearch = new javax.swing.JTextField();
+        btnSearch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        newCD.setText("New CD");
-        newCD.setPreferredSize(new java.awt.Dimension(75, 25));
-        newCD.addActionListener(new java.awt.event.ActionListener() {
+        btnNewCD.setFont(new java.awt.Font("Windows 7 Segoe UI", 0, 12)); // NOI18N
+        btnNewCD.setText("New CD");
+        btnNewCD.setPreferredSize(new java.awt.Dimension(75, 25));
+        btnNewCD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newCDActionPerformed(evt);
+                btnNewCDActionPerformed(evt);
             }
         });
-        jPanel1.add(newCD);
+        jPanel1.add(btnNewCD);
 
-        backup.setText("Backup");
-        backup.setPreferredSize(new java.awt.Dimension(75, 25));
-        backup.addActionListener(new java.awt.event.ActionListener() {
+        btnBackup.setFont(new java.awt.Font("Windows 7 Segoe UI", 0, 12)); // NOI18N
+        btnBackup.setText("Backup");
+        btnBackup.setPreferredSize(new java.awt.Dimension(75, 25));
+        btnBackup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backupActionPerformed(evt);
+                btnBackupActionPerformed(evt);
             }
         });
-        jPanel1.add(backup);
+        jPanel1.add(btnBackup);
 
-        restore.setText("Restore");
-        restore.setPreferredSize(new java.awt.Dimension(75, 25));
-        restore.addActionListener(new java.awt.event.ActionListener() {
+        btnRestore.setFont(new java.awt.Font("Windows 7 Segoe UI", 0, 12)); // NOI18N
+        btnRestore.setText("Restore");
+        btnRestore.setPreferredSize(new java.awt.Dimension(75, 25));
+        btnRestore.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                restoreActionPerformed(evt);
+                btnRestoreActionPerformed(evt);
             }
         });
-        jPanel1.add(restore);
+        jPanel1.add(btnRestore);
 
-        refresh.setText("Refresh");
-        refresh.setPreferredSize(new java.awt.Dimension(75, 25));
-        refresh.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                refreshAncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
-        refresh.addActionListener(new java.awt.event.ActionListener() {
+        btnRefresh.setFont(new java.awt.Font("Windows 7 Segoe UI", 0, 12)); // NOI18N
+        btnRefresh.setText("Refresh");
+        btnRefresh.setPreferredSize(new java.awt.Dimension(75, 25));
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshActionPerformed(evt);
+                btnRefreshActionPerformed(evt);
             }
         });
-        jPanel1.add(refresh);
+        jPanel1.add(btnRefresh);
 
-        delete.setText("Delete");
-        delete.setPreferredSize(new java.awt.Dimension(75, 25));
-        delete.addActionListener(new java.awt.event.ActionListener() {
+        btnDelete.setFont(new java.awt.Font("Windows 7 Segoe UI", 0, 12)); // NOI18N
+        btnDelete.setText(" Delete");
+        btnDelete.setPreferredSize(new java.awt.Dimension(75, 25));
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteActionPerformed(evt);
+                btnDeleteActionPerformed(evt);
             }
         });
-        jPanel1.add(delete);
+        jPanel1.add(btnDelete);
 
-        getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
-
+        table.setFont(new java.awt.Font("Windows 7 Segoe UI", 0, 12)); // NOI18N
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
@@ -111,85 +117,109 @@ public class CDStore extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(table);
 
-        getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
-
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.setPreferredSize(new java.awt.Dimension(75, 25));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
         jPanel2.add(jComboBox1);
 
-        jTextField1.setPreferredSize(new java.awt.Dimension(175, 25));
-        jPanel2.add(jTextField1);
+        inputSearch.setFont(new java.awt.Font("Windows 7 Segoe UI", 0, 12)); // NOI18N
+        inputSearch.setPreferredSize(new java.awt.Dimension(175, 25));
+        jPanel2.add(inputSearch);
 
-        jButton6.setText("Search");
-        jButton6.setPreferredSize(new java.awt.Dimension(75, 25));
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnSearch.setFont(new java.awt.Font("Windows 7 Segoe UI", 0, 12)); // NOI18N
+        btnSearch.setText("Search");
+        btnSearch.setPreferredSize(new java.awt.Dimension(75, 25));
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnSearchActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton6);
+        jPanel2.add(btnSearch);
 
-        getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_END);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void newCDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newCDActionPerformed
-        NewCDDialog dlg = new NewCDDialog(cdManager);
-        dlg.setVisible(true);
-    }//GEN-LAST:event_newCDActionPerformed
+    private void btnBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackupActionPerformed
+        JFileChooser fc = new JFileChooser("D:\\Programming Languages\\Java\\CSE 203\\OOP_S3_23-24\\Lab7\\Lab7");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("EIU File (*.eiu)", "eiu");
+        
+        fc.setFileFilter(filter);
+        int options = fc.showSaveDialog(null);
+        
+        if (options == JFileChooser.APPROVE_OPTION) {
+            String fileName = fc.getSelectedFile().toString();
+            if (!fileName.endsWith(".eiu")) {
+                fileName += ".eiu";
+            }
+            writeTo(fileName);
+        }
+    }//GEN-LAST:event_btnBackupActionPerformed
 
-    private void backupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backupActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_backupActionPerformed
+    private void btnNewCDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewCDActionPerformed
+        NewCDDialog cdDLG = new NewCDDialog(managerCD);
+        cdDLG.setVisible(true);
+    }//GEN-LAST:event_btnNewCDActionPerformed
 
-    private void restoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restoreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_restoreActionPerformed
-
-    private void refreshAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_refreshAncestorAdded
-
-    }//GEN-LAST:event_refreshAncestorAdded
-
-    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deleteActionPerformed
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
         refreshTable();
-    }//GEN-LAST:event_refreshActionPerformed
+    }//GEN-LAST:event_btnRefreshActionPerformed
 
-    private void fillInCDTable() {
-        for (CDInformation cd : cdManager.getListCD()) {
-            String[] rowCDInfo = {cd.getCdTitle(), cd.getCdCollection(), cd.getCdType(), String.valueOf(cd.getCdPrice())};
-            cdModel.addRow(rowCDInfo);
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        int selectedRow = table.getSelectedRow();
+        Object[] options = {"Yes", "No"};
+        if (selectedRow != -1) {
+            int askDeletedRow = JOptionPane.showOptionDialog(null, "Are You Sure You Want To Remove This Row?", "CONFIRM?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[1]);
+            if (askDeletedRow == JOptionPane.YES_OPTION) {
+                managerCD.deleteCD((String) table.getValueAt(selectedRow, 0));
+                refreshTable();
+            }
         }
-        table.setModel(cdModel);
-    }
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
-    public void clearTable() {
-        if (cdModel != null) {
-            cdModel.setRowCount(0);
+    private void btnRestoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestoreActionPerformed
+        JFileChooser fc = new JFileChooser("D:\\Programming Languages\\Java\\CSE 203\\OOP_S3_23-24\\Lab7\\Lab7");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("EIU File (*.eiu)", "eiu");
+        
+        fc.setFileFilter(filter);
+        int options = fc.showOpenDialog(null);
+        
+        if (options == JFileChooser.APPROVE_OPTION) {
+            readFrom(fc.getSelectedFile().getAbsolutePath());
+            refreshTable();
         }
-    }
+    }//GEN-LAST:event_btnRestoreActionPerformed
 
-    public void refreshTable() {
-        clearTable();
-        fillInCDTable();
-    }
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        String selectedID = inputSearch.getText();
+        var cdList = managerCD.getListCD();
+        
+        for (int i = 0; i < cdList.size(); i++) {
+            if (cdList.get(i).getCdID().equals(selectedID)) {
+                modelCD.setRowCount(0);
+                Object[] data = {cdList.get(i).getCdTitle(), cdList.get(i).getCdCollection(), cdList.get(i).getCdType(), cdList.get(i).getCdPrice()};
+                modelCD.addRow(data);
+                table.setModel(modelCD);
+            }
+        }
+    }//GEN-LAST:event_btnSearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,25 +249,72 @@ public class CDStore extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new CDStore().setVisible(true);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new CDStore().setVisible(true);
+            }
         });
     }
-
+    
+    public void fillInTable() {
+        for (CDInformation cd : managerCD.getListCD()) {
+            String[] rowCDInfo = {cd.getCdTitle(), cd.getCdCollection(), cd.getCdType(), String.valueOf(cd.getCdPrice())};
+            modelCD.addRow(rowCDInfo);
+        }
+        table.setModel(modelCD);
+    }
+    
+    public void clearTable() {
+        if (modelCD != null) {
+            modelCD.setRowCount(0);
+        }
+    }
+    
+    public void refreshTable() {
+        clearTable();
+        fillInTable();
+    }
+    
+    public void writeTo(String directory) {
+        try {
+            FileOutputStream f = new FileOutputStream(directory);
+            ObjectOutputStream oStream = new ObjectOutputStream(f);
+            for (CDInformation cd : managerCD.getListCD()) {
+                oStream.writeObject(cd);
+            }
+            oStream.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void readFrom(String directory) {
+        try {
+            FileInputStream f = new FileInputStream(directory);
+            ObjectInputStream iStream = new ObjectInputStream(f);
+            CDInformation cd = null;
+            while ((cd = (CDInformation) iStream.readObject()) != null) {
+                managerCD.addCD(cd);
+            }
+            iStream.close();
+        } catch (ClassNotFoundException e) {
+            System.out.println("Class Not Found");
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton backup;
-    private javax.swing.JButton delete;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton btnBackup;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnNewCD;
+    private javax.swing.JButton btnRefresh;
+    private javax.swing.JButton btnRestore;
+    private javax.swing.JButton btnSearch;
+    private javax.swing.JTextField inputSearch;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JButton newCD;
-    private javax.swing.JButton refresh;
-    private javax.swing.JButton restore;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
-    private CDManager cdManager = new CDManager();
-    private CDTableModel cdModel = new CDTableModel();
 }

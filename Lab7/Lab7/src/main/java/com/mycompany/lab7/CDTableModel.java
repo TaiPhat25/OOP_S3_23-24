@@ -8,7 +8,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Student
+ * @author Tai-E758
  */
 public class CDTableModel extends DefaultTableModel {
 

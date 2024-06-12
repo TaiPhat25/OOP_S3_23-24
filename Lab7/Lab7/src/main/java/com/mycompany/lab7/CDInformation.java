@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Student
+ * @author Tai-E758
  */
 public class CDInformation {
 
