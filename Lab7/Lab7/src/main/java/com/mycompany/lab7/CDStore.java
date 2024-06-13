@@ -18,7 +18,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author Tai-E758
  */
 public class CDStore extends javax.swing.JFrame {
-    
+
     private CDManager managerCD = new CDManager();
     private CDTableModel modelCD = new CDTableModel();
 
@@ -47,7 +47,7 @@ public class CDStore extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        searchType = new javax.swing.JComboBox<>();
         inputSearch = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
 
@@ -117,9 +117,14 @@ public class CDStore extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(table);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setPreferredSize(new java.awt.Dimension(75, 25));
-        jPanel2.add(jComboBox1);
+        searchType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Game", "Movie", "Music" }));
+        searchType.setPreferredSize(new java.awt.Dimension(75, 25));
+        searchType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchTypeActionPerformed(evt);
+            }
+        });
+        jPanel2.add(searchType);
 
         inputSearch.setFont(new java.awt.Font("Windows 7 Segoe UI", 0, 12)); // NOI18N
         inputSearch.setPreferredSize(new java.awt.Dimension(175, 25));
@@ -160,10 +165,10 @@ public class CDStore extends javax.swing.JFrame {
     private void btnBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackupActionPerformed
         JFileChooser fc = new JFileChooser("D:\\Programming Languages\\Java\\CSE 203\\OOP_S3_23-24\\Lab7\\Lab7");
         FileNameExtensionFilter filter = new FileNameExtensionFilter("EIU File (*.eiu)", "eiu");
-        
+
         fc.setFileFilter(filter);
         int options = fc.showSaveDialog(null);
-        
+
         if (options == JFileChooser.APPROVE_OPTION) {
             String fileName = fc.getSelectedFile().toString();
             if (!fileName.endsWith(".eiu")) {
@@ -197,10 +202,10 @@ public class CDStore extends javax.swing.JFrame {
     private void btnRestoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestoreActionPerformed
         JFileChooser fc = new JFileChooser("D:\\Programming Languages\\Java\\CSE 203\\OOP_S3_23-24\\Lab7\\Lab7");
         FileNameExtensionFilter filter = new FileNameExtensionFilter("EIU File (*.eiu)", "eiu");
-        
+
         fc.setFileFilter(filter);
         int options = fc.showOpenDialog(null);
-        
+
         if (options == JFileChooser.APPROVE_OPTION) {
             readFrom(fc.getSelectedFile().getAbsolutePath());
             refreshTable();
@@ -208,18 +213,57 @@ public class CDStore extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRestoreActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        String selectedID = inputSearch.getText();
-        var cdList = managerCD.getListCD();
-        
-        for (int i = 0; i < cdList.size(); i++) {
-            if (cdList.get(i).getCdID().equals(selectedID)) {
-                modelCD.setRowCount(0);
-                Object[] data = {cdList.get(i).getCdTitle(), cdList.get(i).getCdCollection(), cdList.get(i).getCdType(), cdList.get(i).getCdPrice()};
-                modelCD.addRow(data);
-                table.setModel(modelCD);
+        if (searchType.getSelectedItem().toString().equals("All")) {
+            String selectedID = inputSearch.getText();
+            var cdList = managerCD.getListCD();
+
+            for (int i = 0; i < cdList.size(); i++) {
+                if (cdList.get(i).getCdID().equals(selectedID)) {
+                    modelCD.setRowCount(0);
+                    Object[] data = {cdList.get(i).getCdTitle(), cdList.get(i).getCdCollection(), cdList.get(i).getCdType(), cdList.get(i).getCdPrice()};
+                    modelCD.addRow(data);
+                    table.setModel(modelCD);
+                }
+            }
+        } else if (searchType.getSelectedItem().toString().equals("Game")) {
+            var cdList = managerCD.getListCD();
+            modelCD.setRowCount(0);
+
+            for (int i = 0; i < cdList.size(); i++) {
+                if (cdList.get(i).getCdCollection().equals("Game")) {
+                    Object[] data = {cdList.get(i).getCdTitle(), cdList.get(i).getCdCollection(), cdList.get(i).getCdType(), cdList.get(i).getCdPrice()};
+                    modelCD.addRow(data);
+                    table.setModel(modelCD);
+                }
+            }
+        } else if (searchType.getSelectedItem().toString().equals("Movie")) {
+            var cdList = managerCD.getListCD();
+            modelCD.setRowCount(0);
+
+            for (int i = 0; i < cdList.size(); i++) {
+                if (cdList.get(i).getCdCollection().equals("Movie")) {
+                    Object[] data = {cdList.get(i).getCdTitle(), cdList.get(i).getCdCollection(), cdList.get(i).getCdType(), cdList.get(i).getCdPrice()};
+                    modelCD.addRow(data);
+                    table.setModel(modelCD);
+                }
+            }
+        } else if (searchType.getSelectedItem().toString().equals("Music")) {
+            var cdList = managerCD.getListCD();
+            modelCD.setRowCount(0);
+
+            for (int i = 0; i < cdList.size(); i++) {
+                if (cdList.get(i).getCdCollection().equals("Music")) {
+                    Object[] data = {cdList.get(i).getCdTitle(), cdList.get(i).getCdCollection(), cdList.get(i).getCdType(), cdList.get(i).getCdPrice()};
+                    modelCD.addRow(data);
+                    table.setModel(modelCD);
+                }
             }
         }
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void searchTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTypeActionPerformed
+
+    }//GEN-LAST:event_searchTypeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,7 +299,7 @@ public class CDStore extends javax.swing.JFrame {
             }
         });
     }
-    
+
     public void fillInTable() {
         for (CDInformation cd : managerCD.getListCD()) {
             String[] rowCDInfo = {cd.getCdTitle(), cd.getCdCollection(), cd.getCdType(), String.valueOf(cd.getCdPrice())};
@@ -263,18 +307,18 @@ public class CDStore extends javax.swing.JFrame {
         }
         table.setModel(modelCD);
     }
-    
+
     public void clearTable() {
         if (modelCD != null) {
             modelCD.setRowCount(0);
         }
     }
-    
+
     public void refreshTable() {
         clearTable();
         fillInTable();
     }
-    
+
     public void writeTo(String directory) {
         try {
             FileOutputStream f = new FileOutputStream(directory);
@@ -287,7 +331,7 @@ public class CDStore extends javax.swing.JFrame {
             System.out.println(e.getMessage());
         }
     }
-    
+
     public void readFrom(String directory) {
         try {
             FileInputStream f = new FileInputStream(directory);
@@ -311,10 +355,10 @@ public class CDStore extends javax.swing.JFrame {
     private javax.swing.JButton btnRestore;
     private javax.swing.JButton btnSearch;
     private javax.swing.JTextField inputSearch;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> searchType;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }

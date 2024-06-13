@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class CDInformation {
 
     static Scanner obj = new Scanner(System.in);
+    
     private String cdID;
     private String cdTitle;
     private String cdCollection;
